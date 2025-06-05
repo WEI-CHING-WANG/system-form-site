@@ -1,4 +1,4 @@
-const API_URL = 'https://84l1zi5hjc.execute-api.ap-northeast-1.amazonaws.com/submit';
+const API_URL = 'arn:aws:apigateway:ap-northeast-1::/apis/84l1zi5hjc/routes/4j1g6pu';
 
 document.getElementById('sysForm').addEventListener('submit', async (e) => {
   e.preventDefault();
