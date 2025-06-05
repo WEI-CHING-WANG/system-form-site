@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>系統盤點表</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>系統盤點表</h1>
+  <form id="sysForm">
+    <label>系統名稱：<input name="system_name" required></label><br>
+    <label>安全等級：
+      <select name="security_level">
+        <option>低</option><option>中</option><option>高</option>
+      </select>
+    </label><br>
+    <!-- TODO：其餘欄位自行補齊 -->
+    <button type="submit">送出</button>
+  </form>
+
+  <script src="script.js"></script>
+</body>
+</html>
