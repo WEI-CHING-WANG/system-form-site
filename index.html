@@ -15,32 +15,10 @@
         <option>A</option><option>B</option><option>C</option><option>D</option><option>E</option>
       </select>
     </label><br>
-	<label>系統使用的web server種類:
-	  <select name="web_type">
-	    <option>Apache Tomcat</option><option>Apache HTTP Server</option><option>Nginx</option><option>Microsoft</option><option>Jetty</option><option>WildFly/JBoss</option><option>GlassFish</option>
-		<option value="other">其他(請註明):</option>
-	  </select>
-	</label>
-	<input type="text" class="hidden-textbox" name="fixture-use" 
-           id="fixture-use">
     <!-- TODO：其餘欄位自行補齊 -->
     <button type="submit">送出</button>
   </form>
-  <script>
-	  $(document).ready(function(){
-  $('#fixture-use').change(function(){ //on change of dropdown
-  if($(this).val() == "other") // check if dropdown value is other
-  {
-   $('#fixture-use-txt').show();  // show textbox
-  }
-  else
-  {
-  $('#fixture-use-txt').hide(); //hide textbox
 
-  }
- });
- });
-  </scrip>
   <script src="script.js"></script>
 </body>
 </html>
