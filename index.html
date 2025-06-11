@@ -1,25 +1,312 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>系統盤點表</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>入 AWS 雲架構評估問卷</title>
+  <style>
+    body{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif;max-width:960px;margin:0 auto;padding:2rem;line-height:1.6;background:#fafafa;color:#222}
+    h1{font-size:1.8rem;margin-bottom:1rem;text-align:center}
+    fieldset{border:1px solid #ccc;margin:1.5rem 0;padding:1rem;border-radius:.5rem;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.05)}
+    legend{font-weight:700;padding:0 .75rem}
+    label{display:block;margin-top:.85rem}
+    input[type=text],input[type=number],select{width:100%;padding:.45rem;border:1px solid #bbb;border-radius:.3rem;font-size:.95rem}
+    input[type=file]{margin-top:.35rem}
+    input[type=checkbox]{margin-right:.4rem;transform:scale(.9)}
+    button{margin:2rem 0;padding:.7rem 1.8rem;border:none;border-radius:.35rem;background:#0069d9;color:#fff;font-size:1rem;font-weight:500;cursor:pointer;transition:.2s all}
+    button:disabled{background:#999;cursor:not-allowed}
+    button:hover:not(:disabled){background:#0052ad}
+    .hidden{display:none}
+  </style>
 </head>
 <body>
-  <h1>系統盤點表123</h1>
-  <form id="sysForm">
-    <label>系統名稱：<input name="system_name" required></label><br>
-    <label>安全等級：
-      <select name="security_level">
-        <option>A</option><option>B</option><option>C</option><option>D</option><option>E</option>
-      </select>
-    </label><br>
-    <!-- TODO：其餘欄位自行補齊 -->
-    <button type="submit">送出</button>
-  </form>
+<h1>入 AWS 雲架構評估問卷</h1>
+<form id="awsForm">
+  <!-- 一、系統基本資訊 -->
+  <fieldset>
+    <legend>一、系統基本資訊</legend>
+    <label>系統名稱
+      <input type="text" name="system_name" required>
+    </label>
 
-  <script src="script.js"></script>
+    <label>系統安全等級
+      <select name="security_level" required>
+        <option value="">--請選擇--</option>
+        <option value="high">高</option>
+        <option value="medium">中</option>
+        <option value="low">低</option>
+      </select>
+    </label>
+
+    <label>系統架構圖 (PNG / JPG)
+      <input type="file" name="arch_diagram" accept="image/png,image/jpeg">
+    </label>
+
+    <label>系統目前部署於何處
+      <select name="deployment_location" required>
+        <option value="">--請選擇--</option>
+        <option value="onprem">自建實體機房</option>
+        <option value="vm">VM / Hyper‑visor</option>
+        <option value="public_cloud">公有雲</option>
+        <option value="other">其他</option>
+      </select>
+    </label>
+    <input type="text" name="deployment_location_other" class="hidden" placeholder="若選其他，請輸入">
+  </fieldset>
+
+  <!-- 二、伺服器與硬體資源 -->
+  <fieldset>
+    <legend>二、伺服器與硬體資源</legend>
+    <label>Web Server 類型
+      <select name="web_server_type" required>
+        <option value="">--請選擇--</option>
+        <option>Apache Tomcat</option>
+        <option>Apache HTTP Server</option>
+        <option>Nginx</option>
+        <option>Microsoft IIS</option>
+        <option>Jetty</option>
+        <option>JBoss</option>
+        <option>GlassFish</option>
+        <option value="other">其他</option>
+      </select>
+    </label>
+    <input type="text" name="web_server_type_other" class="hidden" placeholder="若選其他，請輸入">
+
+    <label>Web Server 數量
+      <input type="number" name="web_server_count" min="0" required>
+    </label>
+
+    <label>資料庫類型
+      <select name="db_type" required>
+        <option value="">--請選擇--</option>
+        <option>MySQL</option>
+        <option>PostgreSQL</option>
+        <option>SQL Server</option>
+        <option>Oracle</option>
+        <option>SQLite</option>
+        <option>MongoDB</option>
+        <option>Redis</option>
+        <option>Informix</option>
+        <option>IBM Db2</option>
+        <option value="other">其他</option>
+      </select>
+    </label>
+    <input type="text" name="db_type_other" class="hidden" placeholder="若選其他，請輸入">
+
+    <label>DB Server CPU 核心數
+      <input type="number" name="db_cpu_cores" min="1">
+    </label>
+
+    <label>DB Server RAM (GB)
+      <input type="text" name="db_ram" placeholder="例如：32 或 64">
+    </label>
+
+    <label>DB 資料量 (GB / TB)
+      <input type="text" name="db_data_size" placeholder="例如：150GB 或 1.2TB">
+    </label>
+
+    <label>介面 Server 數量
+      <input type="number" name="interface_server_count" min="0">
+    </label>
+
+    <label>網路流量 Peak 值 (Mbps / RPS)
+      <input type="text" name="network_peak" placeholder="例如：500 Mbps 或 2k RPS">
+    </label>
+  </fieldset>
+
+  <!-- 三、系統環境與平台 -->
+  <fieldset>
+    <legend>三、系統環境與平台</legend>
+    <label style="margin-bottom:.4rem">作業系統類型 (可複選)</label>
+    <label><input type="checkbox" name="os_types" value="windows_server">Windows Server</label>
+    <label><input type="checkbox" name="os_types" value="linux">Linux</label>
+    <label><input type="checkbox" name="os_types" value="other">其他</label>
+    <input type="text" name="os_types_other" class="hidden" placeholder="若選其他，請輸入版本/發行版">
+
+    <label style="margin-top:1rem;margin-bottom:.4rem">程式語言使用 (可複選)</label>
+    <label><input type="checkbox" name="programming_languages" value="java">Java</label>
+    <label><input type="checkbox" name="programming_languages" value="python">Python</label>
+    <label><input type="checkbox" name="programming_languages" value="nodejs">Node.js</label>
+    <label><input type="checkbox" name="programming_languages" value="dotnet">.NET / C#</label>
+    <label><input type="checkbox" name="programming_languages" value="php">PHP</label>
+    <label><input type="checkbox" name="programming_languages" value="other">其他</label>
+    <input type="text" name="programming_languages_other" class="hidden" placeholder="若選其他，請輸入">
+
+    <label>是否支援容器化
+      <select name="containerization_state" required>
+        <option value="">--請選擇--</option>
+        <option value="full">是，已全面使用</option>
+        <option value="partial">部分容器化</option>
+        <option value="none">否，尚未使用</option>
+        <option value="unknown">不確定</option>
+      </select>
+    </label>
+  </fieldset>
+
+  <!-- 四、系統使用與安全 -->
+  <fieldset>
+    <legend>四、系統使用與安全</legend>
+    <label>系統是否對外開放
+      <select name="system_public" required>
+        <option value="">--請選擇--</option>
+        <option value="yes">是</option>
+        <option value="no">否</option>
+      </select>
+    </label>
+
+    <label>每日平均使用者數 / 存取次數
+      <input type="number" name="daily_users" min="0" placeholder="若無則留空">
+    </label>
+
+    <label>是否包含排程作業或批次處理
+      <select name="scheduled_jobs" required>
+        <option value="">--請選擇--</option>
+        <option value="yes">是</option>
+        <option value="no">否</option>
+      </select>
+    </label>
+
+    <label>是否與其他系統整合
+      <select name="system_integration" required>
+        <option value="">--請選擇--</option>
+        <option value="yes">是</option>
+        <option value="no">否</option>
+      </select>
+    </label>
+
+    <label>是否涉及個資或敏感資料
+      <select name="contains_sensitive_data" required>
+        <option value="">--請選擇--</option>
+        <option value="yes">是</option>
+        <option value="no">否</option>
+      </select>
+    </label>
+
+    <label>是否有資安或法遵要求
+      <select name="compliance_requirements" required>
+        <option value="">--請選擇--</option>
+        <option value="yes">是</option>
+        <option value="no">否</option>
+      </select>
+    </label>
+
+    <label>是否需支援自動擴展
+      <select name="need_autoscaling" required>
+        <option value="">--請選擇--</option>
+        <option value="yes">是</option>
+        <option value="no">否</option>
+        <option value="depends">視流量而定</option>
+      </select>
+    </label>
+  </fieldset>
+
+  <button type="submit" id="submitBtn">送出</button>
+</form>
+
+<script>
+// 請在 Amplify 環境變數或直接於此處替換您的 API Gateway Invoke URL
+const API_URL = "https://example.execute-api.ap-southeast-1.amazonaws.com/submit";
+const form = document.getElementById('awsForm');
+const submitBtn = document.getElementById('submitBtn');
+
+/**
+ * 根據 select 值顯示/隱藏 "其他" 輸入框
+ */
+function toggleOtherSelect(selectEl, inputName) {
+  const otherInput = form.querySelector(`[name="${inputName}"]`);
+  if (!otherInput) return;
+  if (selectEl.value === 'other') {
+    otherInput.classList.remove('hidden');
+    otherInput.required = true;
+  } else {
+    otherInput.classList.add('hidden');
+    otherInput.required = false;
+    otherInput.value = '';
+  }
+}
+
+/**
+ * 根據 checkbox "其他" 狀態顯示/隱藏文字框
+ */
+function toggleOtherCheckbox(groupName, textInputName) {
+  const checkboxes = [...form.querySelectorAll(`input[type=checkbox][name="${groupName}"]`)];
+  const otherBox = checkboxes.find(cb => cb.value === 'other');
+  const otherInput = form.querySelector(`[name="${textInputName}"]`);
+  if (!otherInput) return;
+  if (otherBox && otherBox.checked) {
+    otherInput.classList.remove('hidden');
+    otherInput.required = true;
+  } else {
+    otherInput.classList.add('hidden');
+    otherInput.required = false;
+    otherInput.value = '';
+  }
+}
+
+// 綁定 change 事件
+form.addEventListener('change', e => {
+  const { name } = e.target;
+  if (name === 'deployment_location') toggleOtherSelect(e.target, 'deployment_location_other');
+  if (name === 'web_server_type') toggleOtherSelect(e.target, 'web_server_type_other');
+  if (name === 'db_type') toggleOtherSelect(e.target, 'db_type_other');
+  if (name === 'os_types' || name === 'programming_languages') {
+    toggleOtherCheckbox('os_types', 'os_types_other');
+    toggleOtherCheckbox('programming_languages', 'programming_languages_other');
+  }
+});
+
+/**
+ * 將表單資料轉為乾淨的物件
+ */
+function serializeForm(fd) {
+  const obj = {};
+  for (const [key, value] of fd.entries()) {
+    // 處理 checkbox 多值
+    if (obj[key]) {
+      if (Array.isArray(obj[key])) obj[key].push(value);
+      else obj[key] = [obj[key], value];
+    } else {
+      obj[key] = value;
+    }
+  }
+
+  // 處理未選其他時，將 *_other 移除
+  Object.entries(obj).forEach(([k, v]) => {
+    if (k.endsWith('_other') && v === '') delete obj[k];
+  });
+
+  // 檔案僅記錄檔名 (示範)
+  const fileInput = form.querySelector('input[name="arch_diagram"]');
+  if (fileInput && fileInput.files.length) {
+    obj['arch_diagram_filename'] = fileInput.files[0].name;
+  }
+  return obj;
+}
+
+form.addEventListener('submit', async e => {
+  e.preventDefault();
+  submitBtn.disabled = true;
+  const fd = new FormData(form);
+  const payload = serializeForm(fd);
+
+  try {
+    const resp = await fetch(API_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    if (!resp.ok) throw new Error('Network response was not ok');
+    const data = await resp.json();
+    alert('提交成功！\nID: ' + (data.key || 'n/a'));
+    form.reset();
+  } catch (err) {
+    console.error(err);
+    alert('提交失敗，請稍後再試');
+  } finally {
+    submitBtn.disabled = false;
+  }
+});
+</script>
 </body>
 </html>
 
