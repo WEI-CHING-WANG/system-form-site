@@ -4,6 +4,10 @@ const API_URL = 'https://84l1zi5hjc.execute-api.ap-northeast-1.amazonaws.com/sub
 const form      = document.getElementById('awsForm');
 const submitBtn = document.getElementById('submitBtn');
 
+/* ---------- 存取S3用的系統名稱變數 ---------- */
+const name = document.getElementById('system_name').value; 
+sessionStorage.setItem('s3name', name);
+
 /* ---------- 動態欄位顯示邏輯 (略，與之前相同) ---------- */
 function toggleOtherSelect(selectEl, otherInputName) {
   const otherInput = form.querySelector(`[name="${otherInputName}"]`);
