@@ -116,6 +116,7 @@ form.addEventListener('submit', async e => {
     if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
     const data = await resp.json();
     alert(`提交成功！\nKey: ${data.key || 'n/a'}`);
+    window.location.href = "https://redirect.dymhx0qz4kqbp.amplifyapp.com";
     form.reset();
   } catch (err) {
     console.error(err);
