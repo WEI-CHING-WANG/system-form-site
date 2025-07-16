@@ -1,5 +1,5 @@
 const API_ENDPOINT = 'https://wbleu2ozz7.execute-api.ap-northeast-1.amazonaws.com/default/callmygraph';
-
+console.log('test');
 try {
         // 使用 fetch API 呼叫 API Gateway
         // 由於我們預期是一個 GET 請求，所以不需要傳遞 body
