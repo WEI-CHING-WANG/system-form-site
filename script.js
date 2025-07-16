@@ -1,4 +1,4 @@
-const API_URL = 'https://ookaco6lh1.execute-api.ap-northeast-1.amazonaws.com/russia/callmygraph';
+const API_URL = 'https://wbleu2ozz7.execute-api.ap-northeast-1.amazonaws.com/default/callmygraph';
 
 const response = await fetch(API_URL, {
             method: 'POST', // 指定 HTTP 方法
