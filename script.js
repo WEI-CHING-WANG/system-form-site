@@ -1,5 +1,4 @@
 const API_ENDPOINT = 'https://wbleu2ozz7.execute-api.ap-northeast-1.amazonaws.com/default/callmygraph';
-alert('test');
 const response = fetch(API_ENDPOINT, {
             method: 'GET', // 指定 HTTP 方法
             headers: {'Content-Type': 'application/json'}
@@ -14,4 +13,4 @@ var datetime = "Last Sync: " + currentdate.getFullYear()
                 + ("0" + currentdate.getDate()).slice(-2)   
                 + currentdate.getHours() 
                 + currentdate.getMinutes();
-document.getElementById('output').innerHTML = datetime+data;
+document.getElementById('output').innerHTML = datetime;
