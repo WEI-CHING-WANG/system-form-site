@@ -5,7 +5,11 @@ const response = await fetch(API_URL, {
             headers: { 'Content-Type': 'application/json'}
         });
 
-
+if (!response.ok) {
+            // 如果回應狀態碼不是 2xx，則拋出錯誤
+            const errorData = await response.json().catch(() => ({})); // 嘗試解析錯誤訊息
+            throw new Error(`HTTP 錯誤! 狀態碼: ${response.status} - ${errorData.message || response.statusText}`);
+        }
         // 解析 JSON 回應
 const data = await response.json();
 
