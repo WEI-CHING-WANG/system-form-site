@@ -14,12 +14,19 @@
 
     <img src="https://system-form-storage-2585-3053-5150.s3.ap-northeast-1.amazonaws.com/forms/POMIS_20250715155303/diagram.png" alt="圖片 1">
   
-
+    <p id="output"></p>
    
 	
 	<script> 
     // Retrieve the values from session storage 
     const s3name = sessionStorage.getItem('s3name'); 
+    var currentdate = new Date(); 
+    var datetime = "Last Sync: " + currentdate.getDate() 
+                + (currentdate.getMonth()+1) 
+                + currentdate.getFullYear()   
+                + currentdate.getHours() 
+                + currentdate.getMinutes() );
+    document.getElementById('output').innerHTML = datetime;
 	</script>
 </body>
 </html>
