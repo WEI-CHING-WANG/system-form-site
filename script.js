@@ -4,7 +4,7 @@ try {
         // 使用 fetch API 呼叫 API Gateway
         // 由於我們預期是一個 GET 請求，所以不需要傳遞 body
         const response = await fetch(API_ENDPOINT, {
-            method: 'POST', // 指定 HTTP 方法
+            method: 'GET', // 指定 HTTP 方法
             headers: {
                 'Content-Type': 'application/json',
                 // 如果您需要傳遞身份驗證 token (例如 Cognito ID Token)，可以在這裡添加
