@@ -13,7 +13,7 @@ const response = await fetch(API_URL, {
         // 解析 JSON 回應
  const data = await response.json();
 
- console.log('Lambda 回應資料:', data);
+ //console.log('Lambda 回應資料:', data);
 
        
 const s3name = sessionStorage.getItem('s3name'); 
@@ -23,4 +23,4 @@ const s3name = sessionStorage.getItem('s3name');
                 + ("0" + currentdate.getDate()).slice(-2)   
                 + currentdate.getHours() 
                 + currentdate.getMinutes();
- document.getElementById('output').innerHTML = datetime+s3name;
+ document.getElementById('output').innerHTML = datetime+data;
