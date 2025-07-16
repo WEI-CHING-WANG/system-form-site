@@ -2,11 +2,7 @@ const API_URL = 'https://wbleu2ozz7.execute-api.ap-northeast-1.amazonaws.com/def
 
 const response = await fetch(API_URL, {
             method: 'POST', // 指定 HTTP 方法
-            headers: {
-                'Content-Type': 'application/json'
-                // 如果您需要傳遞身份驗證 token (例如 Cognito ID Token)，可以在這裡添加
-                // 'Authorization': `Bearer ${yourAuthToken}`
-            }
+            headers: { 'Content-Type': 'application/json'}
         });
 
 
