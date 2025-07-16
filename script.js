@@ -1,5 +1,5 @@
 const API_ENDPOINT = 'https://wbleu2ozz7.execute-api.ap-northeast-1.amazonaws.com/default/callmygraph';
-console.log('test');
+alert('test');
 try {
         // 使用 fetch API 呼叫 API Gateway
         // 由於我們預期是一個 GET 請求，所以不需要傳遞 body
@@ -22,7 +22,7 @@ try {
         // 解析 JSON 回應
         const data = await response.json();
 
-        console.log('Lambda 回應資料:', data);
+        alert('Lambda 回應資料:', data);
 
         if (data && data.bucketNames && data.bucketNames.length > 0) {
             statusMessage.textContent = `成功找到 ${data.bucketNames.length} 個 S3 Buckets:`;
