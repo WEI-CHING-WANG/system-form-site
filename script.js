@@ -1,6 +1,6 @@
 async function getLatestS3ObjectUrl() {
     // 請替換為您的 API Gateway 調用 URL
-    const apiUrl = 'YOUR_API_GATEWAY_INVOKE_URL'; // 例如: https://xxxxxx.execute-api.ap-southeast-1.amazonaws.com/prod
+    const apiUrl = 'https://wbleu2ozz7.execute-api.ap-northeast-1.amazonaws.com/default/callmygraph'; // 例如: https://xxxxxx.execute-api.ap-southeast-1.amazonaws.com/prod
 
     try {
         const response = await fetch(apiUrl, {
@@ -45,4 +45,4 @@ var datetime = "Last Sync: " + currentdate.getFullYear()
                 + ("0" + currentdate.getDate()).slice(-2)   
                 + currentdate.getHours() 
                 + currentdate.getMinutes();
-document.getElementById('output').innerHTML = datetime+latestObjectUrl;
+document.getElementById('output').innerHTML = datetime;
