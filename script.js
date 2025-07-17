@@ -22,13 +22,14 @@ async function getLatestS3ObjectUrl() {
         console.log('從 Lambda 獲取到的最新 S3 物件資訊:', data);
         const latestObjectUrl = data.latest_object_url;
         
-        if (latestObjectUrl) {
+        if (latestObjectUrl.includes("diagram.png")) {
             console.log('最新 S3 物件的 URL:', latestObjectUrl);
             // 在這裡您可以將 URL 用於您的前端應用程式，例如：
             document.getElementById('latestObjectImage').src = latestObjectUrl;
             return latestObjectUrl;
         } else {
             console.log('未找到最新物件 URL。');
+            location.reload();
             return null;
         }
 
