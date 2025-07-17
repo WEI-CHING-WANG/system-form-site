@@ -38,7 +38,7 @@ async function getLatestS3ObjectUrl() {
         return null;
     }
 }
-const latestobjecturl = getLatestS3ObjectUrl();
+
 var currentdate = new Date(); 
 var datetime = "Last Sync: " + currentdate.getFullYear() 
                 + ("0" + (currentdate.getMonth() + 1)).slice(-2)
