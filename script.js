@@ -20,8 +20,8 @@ async function getLatestS3ObjectUrl() {
 
         const data = await response.json();
         console.log('從 Lambda 獲取到的最新 S3 物件資訊:', data);
-
         const latestObjectUrl = data.latest_object_url;
+        return latestObjectUrl;
         if (latestObjectUrl) {
             console.log('最新 S3 物件的 URL:', latestObjectUrl);
             // 在這裡您可以將 URL 用於您的前端應用程式，例如：
@@ -38,11 +38,11 @@ async function getLatestS3ObjectUrl() {
         return null;
     }
 }
-getLatestS3ObjectUrl();
+const latestobjecturl = getLatestS3ObjectUrl();
 var currentdate = new Date(); 
 var datetime = "Last Sync: " + currentdate.getFullYear() 
                 + ("0" + (currentdate.getMonth() + 1)).slice(-2)
                 + ("0" + currentdate.getDate()).slice(-2)   
                 + currentdate.getHours() 
                 + currentdate.getMinutes();
-document.getElementById('output').innerHTML = datetime;
+document.getElementById('output').innerHTML = datetime+latestobjecturl;
