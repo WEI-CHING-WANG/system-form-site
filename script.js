@@ -4,8 +4,9 @@ const response = fetch(API_ENDPOINT, {
             headers: {'Content-Type': 'application/json'}
         });
 
-alert(response);
-       
+//alert(response);
+const data = response.json();
+const latestObjectUrl = data.latest_object_url;
 const s3name = sessionStorage.getItem('s3name'); 
 var currentdate = new Date(); 
 var datetime = "Last Sync: " + currentdate.getFullYear() 
@@ -13,4 +14,4 @@ var datetime = "Last Sync: " + currentdate.getFullYear()
                 + ("0" + currentdate.getDate()).slice(-2)   
                 + currentdate.getHours() 
                 + currentdate.getMinutes();
-document.getElementById('output').innerHTML = datetime;
+document.getElementById('output').innerHTML = datetime+latestObjectUrl;
