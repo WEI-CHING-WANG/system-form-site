@@ -21,7 +21,7 @@ async function getLatestS3ObjectUrl() {
         const data = await response.json();
         console.log('從 Lambda 獲取到的最新 S3 物件資訊:', data);
         const latestObjectUrl = data.latest_object_url;
-        return latestObjectUrl;
+        
         if (latestObjectUrl) {
             console.log('最新 S3 物件的 URL:', latestObjectUrl);
             // 在這裡您可以將 URL 用於您的前端應用程式，例如：
